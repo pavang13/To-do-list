@@ -1,0 +1,190 @@
+
+<!-- <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav style="background-color:rgb(188, 243, 229)"  #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list >
+        <a style="color:black;font-weight:500;" mat-list-item routerLink="/addtaskstudio">Add  Task</a>
+        <a style="color:black;font-weight: 500;" mat-list-item routerLink="/gettaskstudio">Your tasks</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="whitesmoke">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <img style="width:50px;height:50px;" src="../../assets/images/logo.png"/>
+        <span style="font-size: 20px; letter-spacing: .2rem; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:orangered">TODO-LIST</span>
+      <button mat-raised-button color="accent"routerLink="/login" style="margin: 2rem; margin-left:20px; background-color: rgb(19, 21, 21);">Logout</button>
+      <button mat-raised-button color="accent"routerLink="/studio" style="margin: 2rem; margin-left:20px; background-color: rgb(19, 21, 21);">Back</button>
+
+
+      </mat-toolbar>
+      <section class="section">
+        <div class="container">
+          <app-todo-list *ngFor="let u of userlist">
+            <div class="task-list col-8">
+              <div class="todo-item" >
+                  <div class="col-0">
+                  <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd" style="margin-left: 25px;">
+                    <div  *ngIf="u.image?.length>0" class="column is ">
+                      <img [src]="u.image" height="150px" width="150px" routerLink="/uploaduser" alt=" click here Upload you profile picture">
+                    </div> 
+                    <div class="column ">
+                     User Name: {{u.username}}
+                    </div>
+                    <div class="column">
+                      EmailId:{{u.emailId}}
+                    </div>
+                    <div class="column">
+                        Password:{{u.password}}
+                    </div>
+                    <div class="column">
+                        Address:{{u.address}}
+                    </div>
+                    <div class="column">
+                        Mobile No:{{u.mobileNo}}
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <div class="col-0">
+                <div class="todo-controls-box">
+                  <div class="todo-control-button" appToolTip="Edit TodoList">
+                    <i style="float:left;margin-left:650px;" class="material-icons" (click)="toedit(u)">edit</i>
+                  </div>
+  
+                </div>
+                </div>
+            </div>
+  
+          </app-todo-list>
+  
+        </div>
+  
+      </section>
+      <router-outlet></router-outlet> 
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+
+
+  <div>
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()"
+      class="w3-bar-item w3-button">Close Menu</a>
+      <appto-dolist *ngFor="let u of userlist">
+        <div  *ngIf="u.image?.length>0">
+          <img [src]="u.image" height="150px" width="150px" (click)="toedit(u)" alt="Upload" style="width: 150px;">
+          <h1 class="my-3"> Hello, {{u.username}}</h1>
+        </div> 
+      </appto-dolist>
+      <a routerLink="/addtaskstudio" onclick="w3_close()" class="w3-bar-item w3-button">Add Task</a>
+      <a routerLink="/gettaskstudio" onclick="w3_close()" class="w3-bar-item w3-button">My Tasks</a>
+      <a routerLink="/userdetails" onclick="w3_close()" class="w3-bar-item w3-button">My Profile</a>
+      <a routerLink="/login" onclick="w3_close()" class="w3-bar-item w3-button">Logout</a>
+    
+    
+    
+    </nav>
+    
+    <div class="w3-top">
+      <div class="w3-white w3-xlarge" style="max-width:100%;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+        <div class="w3-center w3-padding-16 "><img src="../../assets/images/logo.png" alt="" style="width:30px"> To-Do List</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <app-todo-list *ngFor="let u of userlist">
+        <section style="background-color:white">
+          <div class="container py-5">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="card mb-4" style="background-color:brown">
+                  <div class="card-body text-center" style="background-color:white">
+                    <div  *ngIf="u.image?.length>0">
+                      <img [src]="u.image" height="150px" width="150px" (click)="toedit(u)" alt="Upload" class="rounded-circle img-fluid" style="width: 150px;">
+                    </div> 
+                    <h5 class="my-3">{{u.username}}</h5>
+                    <p class="text-muted mb-4">{{u.address}}</p>
+                    <button class="my-3" (click)="toedit(u)">Upload/Change Profile Picture</button>
+                  </div>
+                </div>
+               
+               
+              </div>
+              <div class="col-lg-8">
+                <div class="card mb-4">
+                  <div class="card-body" style="background-color:brown">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <h3 class="mb-0">Full Name :</h3>
+                      </div>
+                      <div class="col-sm-8">
+                        <h3 class="text-muted mb-0">{{u.username}}</h3>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <h3 class="mb-0">Email :</h3>
+                      </div>
+                      <div class="col-sm-8">
+                        <h3 class="text-muted mb-0">{{u.emailId}}</h3>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <h3 class="mb-0">Phone :</h3>
+                      </div>
+                      <div class="col-sm-8">
+                        <h3 class="text-muted mb-0">{{u.mobileNo}}</h3>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <h3 class="mb-0">Address :</h3>
+                      </div>
+                      <div class="col-sm-8">
+                        <h3 class="text-muted mb-0">{{u.address}}</h3>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </app-todo-list>
+      
+    </div>    
+    <app-footer></app-footer>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

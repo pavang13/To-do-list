@@ -1,0 +1,110 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav style="background-color:rgb(188, 243, 229)"  #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list >
+      <a style="color:black;font-weight:500;" mat-list-item routerLink="/addtask">Add  Task</a>
+      <a style="color:black;font-weight: 500;" mat-list-item href="/gettaskstudio">Your tasks</a>
+      <!-- <a mat-list-item href="#">Link 3</a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="whitesmoke">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <img style="width:50px;height:50px;" src="../../assets/images/logo.png"/>
+      <span style="font-size: 20px; letter-spacing: .2rem; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color:orangered">TODO-LIST</span>
+     
+      <button  mat-icon-button type="button" style="margin-left:700px;" class="box" matBadge='{{noOfIncomplete}}'  (click)="isBadgeHidden " (click)="openModal()"  >
+        <mat-icon>notifications</mat-icon>
+        <button mat-raised-button color="accent"routerLink="/login" style="margin: 2rem; margin-left:20px; background-color: rgb(19, 21, 21);">Logout</button>
+    </button>
+    </mat-toolbar>
+    <!-- <img src="../../assets/images/3.png"> -->
+    <div class="whole">
+    <div class="container add-todo-box-container">
+      <div class="add-todo-box">
+        <form [formGroup]="addtaskForm" (ngSubmit)="addTask()">
+          <h2 class="title is-5">ADD Task</h2>
+          <div class="field is-grouped" style="margin: 0">
+            <div class="control is-expanded ">
+              <input  name="text"  formControlName="taskId" class="input" type="text" placeholder="Type task Id ...">
+              <div *ngIf="taskId.invalid && taskId.touched" class="alert alert-danger">
+              
+                <div *ngIf="taskId.errors?.['required']" >
+                 TaskId is must
+                </div>
+                
+             </div>
+            </div>
+           <br>
+            <p class="control ">
+              <input  name="text" formControlName="taskTitle" class="input" type="text" placeholder="Type task title ...">
+            </p>
+            <br>
+            <p class="control ">
+              <input  name="text" formControlName="description" class="input" type="text" placeholder="Type Description ...">
+            </p>
+            <br>
+            <div class="control ">
+              <input  name="text" formControlName="date" class="input" type="date" placeholder="Type task end date">
+              <div *ngIf="date.invalid && date.touched" class="alert alert-danger">
+              
+                <div *ngIf="date.errors?.['required']" >
+                  Date is must
+                </div>
+                
+             </div>
+            </div>
+            <br>
+            <div class="select is-normal control  ">
+              <label for="priority">Priority</label>
+              <br>
+              <select formControlName="priority">
+                
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+              <div *ngIf="priority.invalid && priority.touched" class="alert alert-danger">
+              
+                <div *ngIf="priority.errors?.['required']" >
+                  Priority is must
+                </div>
+                
+             </div>
+            </div>
+           
+          </div>
+          <br>
+          <div class="field is-grouped">
+            <p class="control" >
+              <input  name="text" class="input" type="file" placeholder="Image" (change)="onuploadimage($event)">
+            </p>
+            <p class="control ">
+              <button type="submit" class="btn btn-danger" [disabled]="addtaskForm.invalid">
+                <i class="material-icons">add</i>
+                Add
+              </button>
+              
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+    <router-outlet></router-outlet>
+   
+          
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

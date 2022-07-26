@@ -1,0 +1,67 @@
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <!-- <div class="w3-display-topleft w3-padding-large w3-xlarge">
+      <img src="../../assets/images/logo.png" alt="" style="width:30px;margin-top:1px">
+    </div> -->
+    <a href="#" class="w3-bar-item w3-button w3-padding-large"><img src="../../assets/images/logo.png" alt="" style="width:30px">To-Do List</a>
+    <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOGIN</a>
+    <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SIGNUP</a>
+    <a href="/aboutus" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About US</a>
+    
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="/login" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">LOGIN</a>
+  <a href="/register" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">SIGNUP</a>
+  <a href="/aboutus" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">About Us</a>
+</div>
+
+<div class="w3-content" style="max-width:2000px;margin-top:46px"></div>
+
+<!-- Automatic Slideshow Images -->
+<div class="mySlides w3-display-container w3-center">
+  <img src="../../assets/images/1.png" style="width:100%">
+  <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+    <h2 style="color:green;font-family: cursive;;"><b>"Plan, Manage and Track all your tasks in one flexible software"</b></h2>
+  </div>
+</div>
+<!-- The About Section -->
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+  <h2 class="w3-wide">To Do LIST</h2>
+  <p class="w3-opacity"><i>We Organize Your Tasks</i></p>
+  <p class="w3-justify">Do you often feel overwhelmed by the amount of work you have to do? Do you find yourself missing deadlines? Or do you sometimes just forget to do something important, so that people have to chase you to get work done?
+
+    All of these are symptoms of not keeping a proper "To-Do List." These are prioritized lists of all the tasks that you need to carry out. They list everything that you have to do, with the most important tasks at the top of the list, and the least important tasks at the bottom.
+    
+    By keeping such a list, you make sure that your tasks are written down all in one place so you don't forget anything important. And by prioritizing tasks, you plan the order in which you'll do them, so that you can tell what needs your immediate attention, and what you can leave until later.
+    
+    To-do lists are essential if you're going to beat work overload. When you don't use them effectively, you'll appear unfocused and unreliable to the people around you.</p>
+  <div class="w3-row w3-padding-32">
+    <div class="w3-third">
+      <p>Manage Your Time</p>
+      <img src="../../assets/images/time.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+    </div>
+    <div class="w3-third">
+      <p>Prioritize Your Task</p>
+      <img src="../../assets/images/priority.webp" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+    </div>
+    <div class="w3-third">
+      <p>Complete Your Task</p>
+      <img src="../../assets/images/tick.webp" class="w3-round" alt="Random Name" style="width:60%">
+    </div>
+  </div>
+</div>
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">To-List App</a></p>
+</footer>
+
+<router-outlet></router-outlet>

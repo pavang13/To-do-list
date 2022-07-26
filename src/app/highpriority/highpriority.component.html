@@ -1,0 +1,111 @@
+<div>
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()"
+      class="w3-bar-item w3-button">Close Menu</a>
+      <appto-dolist *ngFor="let u of userlist">
+        <div  *ngIf="u.image?.length>0">
+          <img [src]="u.image" height="150px" width="150px" (click)="toedit1(u)" alt="Upload" style="width: 150px;">
+          <h1 class="my-3"> Hello, {{u.username}}</h1>
+        </div> 
+      </appto-dolist>
+      <a routerLink="/addtaskstudio" onclick="w3_close()" class="w3-bar-item w3-button">Add Task</a>
+      <a routerLink="/gettaskstudio" onclick="w3_close()" class="w3-bar-item w3-button">My Tasks</a>
+      <a routerLink="/userdetails" onclick="w3_close()" class="w3-bar-item w3-button">My Profile</a>
+      <a routerLink="/login" onclick="w3_close()" class="w3-bar-item w3-button">Logout</a>
+    
+    
+    
+    </nav>
+    
+    <div class="w3-top">
+      <div class="w3-white w3-xlarge" style="max-width:100%;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+        <div class="w3-center w3-padding-16 "><img src="../../assets/images/logo.png" alt="" style="width:30px"> To-Do List</div>
+      </div>
+    </div> 
+    </div> 
+  
+     <div class="container11">
+      <div class="container page-todo bootstrap snippets bootdeys">
+        <div class="col-sm-12 tasks">
+          <div class="task-list">
+            <!-- <button routerLink="/gettaskstudio" style="background-color: lightseagreen; color:black; padding: 10px;">All Tasks</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button routerLink="/highpriority"  style="background-color:#f86c6b; padding: 10px;">High Priority</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button routerLink="/mediumpriority" style="background-color:#f8cb00; padding: 10px;">Medium Priority</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button routerLink="/lowpriority" style="background-color:#4dbd74; padding: 10px;">Low Priority</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button  class="box" type="button" matBadge='{{noOfIncomplete}}'  (click)="isBadgeHidden " (click)="openModal()" style="background-color:rgb(245, 29, 29); padding: 10px; color: white;">
+            Incompleted Tasks
+          </button> -->
+          <div class="mytask">
+            <button routerLink="/gettaskstudio" style="background-color: lightseagreen; color:black; width:130px;height:50px;">All Tasks </button>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            <button style=" margin-left:200px;" routerLink="/highpriority"  style="background-color:#f86c6b; width: 130px;height:50px;padding:3px;">High Priority ({{count}})</button>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            <button routerLink="/mediumpriority" style="background-color:#f8cb00;width:129px;height:50px;padding:12px;">MediumPriority</button>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            <button routerLink="/lowpriority" style="background-color:#4dbd74; width:130px;height:50px; padding:5px; ">Low Priority</button>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            <!-- <button style="background-color:#f86c6b; width:120px; height:50px;padding:5px;">TotalTasks:{{count}}</button>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; -->
+            <button  class="box" type="button" matBadge='{{noOfIncomplete}}'  (click)="isBadgeHidden " (click)="openModal()" style="background-color:rgb(245, 29, 29);  width:131px;height:50px;  color: white; padding:12px;">
+            IncompletedTasks
+            </button>
+            </div>
+          
+
+            <br>
+            <br>
+  
+            <div class="priority high"><span>High Priority Tasks</span></div>
+            
+            <app-to-list  *ngFor="let t of taskList | paginate:{ itemsPerPage:6,currentPage:page,totalItems:totalLength}">
+              <div class="task high">
+                <div class="new">
+                <div class="desc">
+                  <div class="title"><b>Task Title &nbsp;&nbsp; :</b>&nbsp;&nbsp;{{t.taskTitle}}</div>
+                  <div class="title"><b>Description :</b>&nbsp;&nbsp;{{t.description}}</div>
+                  <div class="title"><b>Priority :</b>&nbsp;&nbsp;{{t.priority}}</div>
+                  <div class="date" class="title"><b>Due Date&nbsp;&nbsp; &nbsp;  :</b>&nbsp;&nbsp;{{t.date}}</div>
+                  <div class="todo-controls-box">
+                    <input type="checkbox" class="check-box" (click)="openSnackBar('Task Completed','Dismiss',t.taskId)"> &nbsp; &nbsp; &nbsp;
+
+                    <button type="submit" (click)="toedit(t)">Update</button>
+                    &nbsp;
+                    &nbsp;
+                    <button type="submit" (click)="deleteTask(t.taskId)">Delete</button>
+                </div>
+                </div>
+                <div class="image">
+                    <!-- <img src="../../assets/images/02.jpg" alt="" class="i1"> -->
+                    <div  *ngIf="t.image?.length>0" >
+                      <img [src]="t.image" alt="" class="i1">
+                    </div>
+                </div>
+                </div>
+              </div>
+            </app-to-list>
+            <pagination-controls (pageChange)="page=$event"></pagination-controls>
+
+
+            <div class="modalbox">
+              <div class="modal"  role="dialog"  [ngStyle]="{'display':display}">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color:black">
+                      <h4 class="modal-title" style="color:white">High Priority Incompleted task</h4>
+                      
+                    </div>
+                    <div class="modal-body" *ngIf="isBadgeHidden" >
+                      <mat-list role="list"*ngFor="let i of incomplete">
+                        <mat-list-item role="listitem">{{i.taskTitle}} is incomplete.</mat-list-item><br>
+                      </mat-list>
+                    
+                    </div>
+                    <div class="modal-footer">
+                      <button class="bottom" style="float:left;margin-right: 80px; width:200px;height:50px;background-color: #f86c6b;color:black;">Total:{{noOfIncomplete}}</button>
+                      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+                  </div>
+                </div>
+               </div>
+            </div>
+          </div>		
+        </div>
+        </div>
+    </div> 
+    <app-footer></app-footer>

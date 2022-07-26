@@ -1,0 +1,138 @@
+<!-- <mat-sidenav-container class="sidenav-container" style="background-color: rgb(228, 238, 235);" >
+    <mat-sidenav-content>
+      <mat-toolbar style="background-color:whitesmoke">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          *ngIf="isHandset$ | async">
+        </button>
+        <img style="width:50px;height:50px;" src="../../assets/images/logo.png"/>
+        <span  style="justify-content:center; margin-left:10px; font-size: 20px; letter-spacing: .2rem; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:orangered ;">TODO-LIST</span>
+         
+         <button mat-raised-button color="accent" routerLink="/home" style="margin: .5rem; margin-left: 80rem; background-color: rgb(19, 21, 21);">Home</button>
+        
+      </mat-toolbar>
+      
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  
+  <div class="container" >
+    <h1 style="text-align: center;">Login Form</h1>
+  
+    <mat-card>
+        <div class="registerForm" mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+               
+                <mat-form-field appearance="standard">
+                    <mat-label for ="emailId">Email</mat-label>
+                    <input matInput type="text" formControlName="emailId">
+                    
+                </mat-form-field>
+                <div *ngIf="emailId.invalid && emailId.touched" class="alert alert-danger">
+                  <div *ngIf="emailId.errors?.['required']" >
+                      Email is must
+                  </div>
+                  <div *ngIf="emailId.errors?.['pattern']" >
+                   Email is not valid
+                  </div>
+              </div>
+                             
+                <br>
+                <mat-form-field appearance="standard">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="text" formControlName="password"[type]="hide ? 'password' : 'text'">
+                    
+                </mat-form-field>
+                <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+                  <div *ngIf="password.errors?.['required']" >
+                    password is must
+                  </div>
+                  <div *ngIf="password.errors?.['minlength']" >
+                  password is not valid
+                  </div>
+                </div>
+                
+                       
+               
+              
+             
+            
+              <br>
+                <button mat-raised-button [disabled]="loginForm.invalid" class="button alt-gradient-button" type="submit">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;
+              <br><br>
+             
+            </form>
+            
+        
+        </div>
+    </mat-card>
+  </div>
+   
+    -->
+
+
+    <div class="w3-top">
+      <div class="w3-bar w3-black w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+       
+        <a href="#" class="w3-bar-item w3-button w3-padding-large"><img src="../../assets/images/logo.png" alt="" style="width:30px">    To-Do List</a>
+        <!-- <a href="#" class="w3-bar-item w3-button w3-padding-large">To-Do List</a> -->
+        <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-hide-small">HOME</a>
+        <!-- <a href="#aboutus" class="w3-bar-item w3-button w3-padding-large w3-hide-small" routerLink="/viewtask">About Us</a> -->
+
+        
+      </div>
+    </div>
+    
+    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+    <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+      <a href="/home" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">HOME</a>
+      <!-- <a href="#aboutus" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">About Us</a> -->
+      <!-- <a href="/studio" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Task</a> -->
+
+    </div>
+
+
+    <div class="container">
+      <h1>LOGIN FORM</h1>
+      <div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <label for="emailId">Email ID</label>
+          <input type="text" formControlName="emailId">
+          <div *ngIf="emailId.invalid && emailId.touched" class="alert alert-danger">
+            <div *ngIf="emailId.errors?.['required']" >
+              Email is must
+            </div>
+            <div *ngIf="emailId.errors?.['pattern']" >
+              Email is not valid
+            </div>
+        </div>
+
+        <label for="password">Password</label>
+        <br>
+        <input type="password" formControlName="password" style="height: 45px;width:100%" id="myInput">&nbsp; &nbsp;
+        <br>
+        <input type="checkbox" onclick="myFunction1()">&nbsp; &nbsp;Show Password
+        <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+          <div *ngIf="password.errors?.['required']" >
+            password is must
+          </div>
+        <div *ngIf="password.errors?.['minlength']" >
+            password is not valid
+        </div>
+        <div *ngIf="password.errors?.['maxlength']">
+          password should not exceed 12 characters
+  
+        </div>
+       </div>
+       <br>
+       <br>
+
+       <button [disabled]="loginForm.invalid" type="submit" class="btn btn-danger">Login</button> &nbsp; &nbsp;
+       <button routerLink="/forgotpassword" class="btn btn-danger">forgot Password</button>
+       <app-footer></app-footer>
+
+

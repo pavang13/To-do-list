@@ -1,0 +1,125 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav style="background-color:rgb(188, 243, 229)"  #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list >
+      <a style="color:black;font-weight:500;" mat-list-item routerLink="/addtaskstudio">Add  Task</a>
+      <a style="color:black;font-weight: 500;" mat-list-item routerLink="/gettaskstudio">Your tasks</a>
+      <a style="color:black;font-weight: 500;" mat-list-item routerLink="/studio">Back</a>
+
+      <!-- <a mat-list-item href="#">Link 3</a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="whitesmoke">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <img style="width:50px;height:50px;" src="../../assets/images/logo.png"/>
+      <span style="font-size: 20px; letter-spacing: .2rem; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color:orangered">TODO-LIST</span>
+     
+      <button  mat-icon-button type="button" style="margin-left:700px;" class="box" matBadge='{{noOfIncomplete}}'  (click)="isBadgeHidden " (click)="openModal()"  >
+        <mat-icon>notifications</mat-icon>
+        <button mat-raised-button color="accent"routerLink="/login" style="margin: 2rem; margin-left:20px; background-color: rgb(19, 21, 21);">Logout</button>
+    </button>
+    </mat-toolbar>
+    <section class="section">
+      <div class="container">
+        <app-todo-list *ngFor="let t of taskList">
+          <div class="task-list col-8">
+            <div class="todo-item"   [ngClass]="{'highPriorityTask':t.priority==='High','mediumPriorityTask':t.priority==='Medium','lowPriorityTask':t.priority==='Low'}">
+              <div>
+                <input type="checkbox" class="check-box" (click)="openSnackBar('Task Completed','Dismiss',t.taskId)">
+              </div>
+              <!-- <div class="todo-text ">
+                <div  *ngIf="t.image?.length>0" class="column is ">
+                  <img style="float:left;margin-left: 300px;" [src]="t.image" height="150px" width="150px" alt="">
+                </div> -->
+                <div class="col-0">
+                <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd" style="margin-left: 25px;">
+                  <div  *ngIf="t.image?.length>0" class="column is ">
+                    <img [src]="t.image" height="150px" width="150px" alt="">
+                  </div> 
+                  <div class="column ">
+                   Task Title: {{t.taskTitle}}
+                  </div>
+                  <div class="column">
+                    Description:{{t.description}}
+                  </div>
+                   <!-- <div  *ngIf="t.image?.length>0" class="column is ">
+                    <img [src]="t.image" height="150px" width="150px" alt="">
+                  </div>  -->
+                  <div class="column is-5 ">
+                   Date: {{t.date}}
+                  </div> 
+                  <div class="column is-3">
+                   Priority: {{t.priority}}
+                  </div> 
+                </div>
+              </div>
+              </div>
+              <div class="col-0">
+              <div class="todo-controls-box">
+                <div class="todo-control-button" appToolTip="Edit TodoList">
+                  <i style="float:left;margin-left:650px;" class="material-icons" (click)="toedit(t)">edit</i>
+                </div>
+
+                <div class="todo-control-button is-danger" appToolTip="Delete Todo">
+                  <i style="margin-left:200px;"class="material-icons" (click)="deleteTask(t.taskId)">delete</i>
+                </div>
+
+              </div>
+              </div>
+
+            
+
+          </div>
+
+        </app-todo-list>
+
+      </div>
+
+    </section>
+
+    <div class="modalbox">
+      <div class="modal"  role="dialog"  [ngStyle]="{'display':display}">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Incompleted task</h4>
+              
+            </div>
+            <div class="modal-body" *ngIf="isBadgeHidden" >
+              <mat-list role="list"*ngFor="let i of incomplete">
+                <mat-list-item role="listitem">{{i.taskTitle}} is incomplete.</mat-list-item><br>
+              </mat-list>
+            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+            </div>
+          </div>
+        </div>
+       </div>
+    </div>
+
+
+
+    
+    <router-outlet></router-outlet>
+    
+   
+   
+    
+          
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

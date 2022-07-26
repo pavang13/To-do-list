@@ -1,0 +1,171 @@
+<!-- 
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav style="background-color:rgb(188, 243, 229)"  #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list >
+        <a style="color:black;font-weight:500;" mat-list-item routerLink="/addtaskstudio">Add  Task</a>
+        <a style="color:black;font-weight: 500;" mat-list-item routerLink="/gettaskstudio">Your tasks</a>
+        <a style="color:black;font-weight: 500;" mat-list-item routerLink="/studio">Task Home</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="whitesmoke">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon" >menu</mat-icon>
+        </button>
+        <img style="width:50px;height:50px;" src="../../assets/images/logo.png"/>
+        <span style="font-size: 20px; letter-spacing: .2rem; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:orangered">TODO-LIST</span>
+       
+        <button  mat-icon-button type="button" style="margin-left:700px;" class="box" matBadge='{{noOfIncomplete}}'  (click)="isBadgeHidden " (click)="openModal()"  >
+          <mat-icon>notifications</mat-icon>
+          <button mat-raised-button color="accent"routerLink="/login" style="margin: 2rem; margin-left:20px; background-color: rgb(19, 21, 21);">Logout</button>
+      </button>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+     <div class="whole">
+        <h1 class="title">Edit Task</h1>
+        <div mat-dialog-content >
+            <div class="container">
+            <form [formGroup]="updateForm" (ngSubmit)="updateTask()">
+                <div class="field" >
+                    <div class="control ">
+                        <input  name="text" class="input" type="text" placeholder="Type task title" formControlName="taskTitle" >
+                        
+                    </div>
+                    <br>
+                    <div class="control ">
+                        <input  name="text" class="input" type="text" placeholder="Type task description" formControlName="description" >
+                        
+                    </div>
+                    <br>
+                    <div class="control ">
+                        <input  name="text" class="input" type="date" placeholder="Type todo end date" formControlName="date">
+                    </div>
+                    <br>
+                    <div class="select is-normal control"  >
+                        <select formControlName="priority">
+                           
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                        </select>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="control">
+                        <i class="material-icons">image <input  name="text" class="input" type="file" (change)="onuploadimage($event)">
+                        </i>
+                    </div >
+                </div>
+                <br>
+                <div class="field is-grouped is-grouped-right">
+                    <div class="control">
+                        <button type="button" class="button is-light" type="button" routerLink="/gettaskstudio">Cancel</button>
+                    </div>
+                    <br>
+                    <div class="control">
+                        <button type="submit" class="btn btn-primary" type="submit">
+                            <i class="material-icons">save</i>
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+     </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+
+  <div>
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()"
+      class="w3-bar-item w3-button">Close Menu</a>
+      <appto-dolist *ngFor="let u of userlist">
+        <div  *ngIf="u.image?.length>0">
+          <img [src]="u.image" height="150px" width="150px" (click)="toedit1(u)" alt="Upload" style="width: 150px;">
+          <h1 class="my-3"> Hello, {{u.username}}</h1>
+        </div> 
+      </appto-dolist>
+      <a routerLink="/addtaskstudio" onclick="w3_close()" class="w3-bar-item w3-button">Add Task</a>
+      <a routerLink="/gettaskstudio" onclick="w3_close()" class="w3-bar-item w3-button">My Tasks</a>
+      <a routerLink="/userdetails" onclick="w3_close()" class="w3-bar-item w3-button">My Profile</a>
+      <a routerLink="/login" onclick="w3_close()" class="w3-bar-item w3-button">Logout</a>
+    
+    
+    
+    </nav>
+    
+    <div class="w3-top">
+      <div class="w3-white w3-xlarge" style="max-width:100%;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+        <div class="w3-center w3-padding-16 "><img src="../../assets/images/logo.png" alt="" style="width:30px"> To-Do List</div>
+      </div>
+    </div>
+  
+    <div class="container">
+  
+      <div class="w3-content" style="max-width:100%">
+        <div class="addtask">
+          <form [formGroup]="updateForm" (ngSubmit)="updateTask()">
+            <h1>Update Your Task Here</h1>
+  
+         <div>
+          <label for="taskId">Task ID</label>
+          <input  name="text"  formControlName="taskId" class="input" type="text" >
+         </div>
+  
+         <div>
+          <label for="taskTitle">Task Title</label>
+          <input  name="text" formControlName="taskTitle" class="input" type="text" >
+         </div>
+  
+         <div>
+          <label for="taskdescription">Task Description</label>
+          <input  name="text" formControlName="description" class="input" type="text" >
+         </div>
+  
+  
+         <div>
+          <label for="Date">Date</label>
+          <input  name="text" formControlName="date" class="input" type="date" min="2022-07-26">
+         </div>
+  
+  
+         <div>
+          <label for="Priority">Priority</label>
+          <select formControlName="priority">
+                  
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+         </div>
+  
+         <div>
+          <label for="Image">Image</label>
+          <input  name="text" class="input" type="file" placeholder="Image" (change)="onuploadimage($event)">
+         </div>
+         <div>
+            <button routerLink="/gettaskstudio">Cancel</button>&nbsp;&nbsp;
+            <button type="submit">Save</button>
+         </div>
+  
+  
+        </form>
+        </div>
+  
+      </div>
+  
+    </div>
+    <app-footer></app-footer>
+  

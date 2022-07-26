@@ -1,0 +1,14 @@
+.add-todo-box {
+  /* text-align: center; */
+   align-items:center; 
+  margin-left:400px;
+   padding: 50px; 
+}
+ .whole{
+  /* background-image: url("../../assets/images/3.png");
+  width: 100%;
+  height: 130%;
+  background-size: 100% ;  
+  background-size: cover; */
+  background-color:rgb(240, 253, 255);
+ }

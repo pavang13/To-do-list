@@ -1,0 +1,48 @@
+<mat-sidenav-container class="sidenav-container" style="background-color: rgb(228, 238, 235);" >
+    <mat-sidenav-content>
+      <mat-toolbar style="background-color:whitesmoke">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          *ngIf="isHandset$ | async">
+          <!-- <mat-icon aria-label="Side nav toggle icon">menu</mat-icon> -->
+        </button>
+        <img style="width:50px;height:50px;" src="../../assets/images/logo.png"/>
+        <span  style="justify-content:center; margin-left:10px; font-size: 20px; letter-spacing: .2rem; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:orangered ;">TODO-LIST</span>
+         
+        <button mat-raised-button color="accent" routerLink="/register" style="margin: .5rem; margin-left: 45rem; background-color: rgb(19, 21, 21);">Signup</button>
+        <button mat-raised-button color="accent" routerLink="/login" style="margin: .5rem;  background-color: rgb(19, 21, 21);">Login</button>
+        <button mat-raised-button color="accent" routerLink="/contact" style="margin: .5rem;  background-color: rgb(19, 21, 21);">Contact Us</button>
+        <!--<button mat-raised-button color="accent"routerLink="/login" style="margin: 2rem; background-color: rgb(19, 21, 21);">Logout</button>-->
+      </mat-toolbar>
+      <!-- Add Content Here -->
+      <div class="container">
+        <div class="row">
+        <h1 style="font-size:50px;">A better online to-do list app for work </h1>
+        <h3 style="margin-top:15px;">Todo List makes it easier for individual to plan their work by using online to-do list</h3>
+        
+          
+      </div>
+      <div class="pic">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../../assets/images/1.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../../assets/images/2.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../../assets/images/3.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+      </div>
+          </div>
+      </div>
+  
+        <router-outlet></router-outlet>  
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+ 
